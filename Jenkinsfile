@@ -23,27 +23,18 @@ pipeline {
     
     post {
         always {
-            emailext (
-                subject: "Jenkins Build ${currentBuild.result}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
-                body: """
-                    <html>
-                    <body>
-                        <h2>Build ${currentBuild.result}</h2>
-                        <p><strong>Job:</strong> ${env.JOB_NAME}</p>
-                        <p><strong>Build Number:</strong> ${env.BUILD_NUMBER}</p>
-                        <p><strong>Build Status:</strong> ${currentBuild.result}</p>
-                        <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                        <p><strong>Duration:</strong> ${currentBuild.durationString}</p>
-                        <hr>
-                        <h3>Console Output:</h3>
-                        <pre>${currentBuild.rawBuild.getLog(50).join('\n')}</pre>
-                    </body>
-                    </html>
-                """,
-                to: 'ziadmedhat301@gmail.com',
-                from: 'ziadmehat999@gmail.com',
-                mimeType: 'text/html'
-            )
+            mail to: 'ziadmedhat301@gmail.com',
+                 from: 'ziadmehat999@gmail.com',
+                 subject: "Jenkins Build ${currentBuild.result}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                 body: """
+Build Status: ${currentBuild.result}
+Job: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Build URL: ${env.BUILD_URL}
+Duration: ${currentBuild.durationString}
+
+This email was sent automatically by Jenkins.
+                 """
         }
         
         success {
