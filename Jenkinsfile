@@ -19,7 +19,7 @@ pipeline {
         }
 
         failure {
-            emailext(
+            mail(
                to: "ziadmedhat301@gmail.com",
                 subject: "Jenkins Build FAILED",
                 body: "The build has failed. Check Jenkins for details."
