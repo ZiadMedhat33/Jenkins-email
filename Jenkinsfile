@@ -4,44 +4,29 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Project building..."  // You can replace this with actual build steps later
+                echo "project building"
             }
         }
     }
 
-    post {
+     post {
         success {
             mail(
                 to: "ziadmedhat301@gmail.com",
-                from: "ziadmehat999@gmail.com",  // Must match the Gmail account in Jenkins SMTP
+                from: "ziadmehat999@gmail.com",
                 subject: "Jenkins Build SUCCESS",
-                body: """
-Hello,
-
-The Jenkins build for your project has completed successfully.
-
-Build Number: ${env.BUILD_NUMBER}
-Job Name: ${env.JOB_NAME}
-Build URL: ${env.BUILD_URL}
-"""
+                body: "The build completed successfully."
             )
         }
 
         failure {
             mail(
-                to: "ziadmedhat301@gmail.com",
-                from: "ziadmehat999@gmail.com",  // Must match the Gmail account in Jenkins SMTP
+               to: "ziadmedhat301@gmail.com",
+                from: "ziadmehat999@gmail.com",
                 subject: "Jenkins Build FAILED",
-                body: """
-Hello,
-
-The Jenkins build for your project has FAILED.
-
-Build Number: ${env.BUILD_NUMBER}
-Job Name: ${env.JOB_NAME}
-Build URL: ${env.BUILD_URL}
-"""
+                body: "The build has failed. Check Jenkins for details."
             )
         }
     }
 }
+//
