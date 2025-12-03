@@ -4,26 +4,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building the project..."   // Replace this with your actual build commands
+                echo "Building the project..."
             }
         }
     }
 
-    post {
-        always {
-            // Send an email after the build, whether it succeeds or failss
-            emailext (
-                subject: "Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
-                body: """Hello,
+     post {
+        success {
+            emailext(
+                to: "ziadmedhat301@gmail.com",
+                subject: "Jenkins Build SUCCESS",
+                body: "The build completed successfully."
+            )
+        }
 
-The Jenkins build for project '${env.JOB_NAME}' has finished.
-
-Build Number: ${env.BUILD_NUMBER}
-Build Status: ${currentBuild.currentResult}
-
-Check the build details here: ${env.BUILD_URL}
-""",
-                to: "ziadmedhat301@gmail.com"   // Replace with your email
+        failure {
+            emailext(
+               to: "ziadmedhat301@gmail.com",
+                subject: "Jenkins Build FAILED",
+                body: "The build has failed. Check Jenkins for details."
             )
         }
     }
