@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building the project..."
+                echo "project building"
             }
         }
     }
 
      post {
         success {
-            emailext(
+            mail(
                 to: "ziadmedhat301@gmail.com",
                 subject: "Jenkins Build SUCCESS",
                 body: "The build completed successfully."
