@@ -13,6 +13,7 @@ pipeline {
         success {
             mail(
                 to: "ziadmedhat301@gmail.com",
+                from: "ziadmehat999@gmail.com",
                 subject: "Jenkins Build SUCCESS",
                 body: "The build completed successfully."
             )
@@ -21,6 +22,7 @@ pipeline {
         failure {
             mail(
                to: "ziadmedhat301@gmail.com",
+                from: "ziadmehat999@gmail.com",
                 subject: "Jenkins Build FAILED",
                 body: "The build has failed. Check Jenkins for details."
             )
