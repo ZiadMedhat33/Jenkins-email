@@ -11,7 +11,7 @@ pipeline {
 
     post {
         always {
-            // Send an email after the build, whether it succeeds or fails
+            // Send an email after the build, whether it succeeds or failss
             emailext (
                 subject: "Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
                 body: """Hello,
