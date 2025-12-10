@@ -23,4 +23,4 @@ pipeline {
                  body: "Build Status: ${currentBuild.result}\nJob: ${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}"
         }
     }
-}////
+}/////
